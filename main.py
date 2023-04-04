@@ -1,6 +1,5 @@
 
-import datetime
 import fitnesscenter
-
-gym = fitnesscenter.FitnessCenter
-gym.run()
+if __name__ == "__main__":
+    gym = fitnesscenter.FitnessCenter()
+    gym.run()
