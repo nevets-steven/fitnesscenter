@@ -19,10 +19,10 @@ class SingleClubMember(Member):
         self.member_id = member_id
         self.name = name
         self.club = club
-
+#The check_in method alerts the user if it’s not their club and prompts them again for the correct club or to cancel the check in process
     def check_in(self, club):
         if club.name != self.club.name:
-            print(f"Alert! {self.name} is a member of {self.club.name}.Please check in at your club{self.club.name}.")
+            print(f"Alert! {self.name} is not a member of {self.club.name}.Please check in at your club{self.club.name}.")
             return False
         else:
             print(f"Welcome {self.name} to {club.name}!")
@@ -34,12 +34,12 @@ class MultiClubMember(Member):
         self.member_id = member_id
         self.name = name
         self.membership_points = membership_points
-
+#The check_in method adds to their membership points
     def check_in(self, club):
         self.membership_points += 1
         print(f"Welcome {self.name} to {club.name}! Membership points: {self.membership_points}")
         return True
-#added from today
+# Club class that holds basic details about each fitness club
 class Club():
     def __init__(self,Name,Address):
         self.name = Name
@@ -53,7 +53,7 @@ class FitnessCenter:
                       Club("Club D", "Address D")]
         self.promotion_start_date = datetime.date(2023, 4, 1)
         self.promotion_end_date = datetime.date(2023, 4, 30)
-
+#Add members (both kinds),
     def add_member(self):
         while True:
             name = input("Enter name of member: ")
@@ -95,7 +95,7 @@ class FitnessCenter:
     def is_promotion_period(self):
         today = datetime.date.today()
         return self.promotion_start_date <= today <= self.promotion_end_date
-
+#Remove members (both kinds),
     def remove_member(self):
         while True:
             try:
@@ -111,7 +111,7 @@ class FitnessCenter:
                 print(f"Member with ID {member_id} has been removed.")
                 return
         print(f"No member found with ID {member_id}.")
-
+#Display member information.
     def display_member_info(self):
 
         while True:
@@ -134,6 +134,7 @@ class FitnessCenter:
                     print(f"Points: {member.membership_points}")
                 return
         print(f"No member found with ID {member_id}.")
+ #tMethod to select from  4 fitness center locations
     def choose_club(self):
      while True:
         print("Choose a club:")
@@ -148,9 +149,8 @@ class FitnessCenter:
                 print("Invalid choice. Please choose again.")
         except ValueError:
             print("Invalid choice. Please choose again.")
-
+#Check a particular member in at a particular club. (Call the check_in method)
     def check_in_member(self):
-
         while True:
             try:
                 member_id = int(input("Enter ID of member to check in: "))
@@ -159,35 +159,17 @@ class FitnessCenter:
                 break
             except ValueError:
                 print("Invalid member ID. Please enter a positive integer.")
-        # print('Which club are you trying to check into?')
-        # club_input = input('< ')
-        # print(member.name)
-        # if club_input != club.name:
-        #     print(f'I am sorry, {mem}')
-        # print(test_input_)
         for member in self.members:
             if member.member_id == member_id:
                 if isinstance(member, SingleClubMember):
-                    print('What club are you trying to check into?')
-                    club_input = input('< ').lower()
-                    if club_input == member.club.name.lower():
-                        print(club_input)
-                        print(member.club.name)
-                        club = member.club
-                    else:
-                        print(f'Member {member_id} does not belong to {member.club.name}.')
-                        club = self.choose_club()
+                    club = self.choose_club()
+                    member.check_in(club)
                 else:
                     club = self.choose_club()
-                if not member.check_in(club):
-                    print("Check-in failed.")
-                    self.check_in_member()  # prompt again to check in
-                else:
-                    print("Check-in successful.")
-
+                    member.check_in(club)
                 return
         print(f"No member found with ID {member_id}.")
-
+#Select a member and generate a bill of fees.
     def generate_bill(self):
 
      while True:
@@ -227,13 +209,15 @@ class FitnessCenter:
                 if member.membership_points > 10:
                     discount = 0.1  # 10% discount for more than 10 points
                     cost *= (1 - discount)
-                    print(f"You have received a 10% discount for having more than 10 points.")
-            cost =cost -Dicost
+                    print(f"You have received a extra 10% discount for having more than 10 points.")
+            cost = cost -Dicost
             print(f"Total cost: ${cost}")
             return
      print(f"No member found with ID {member_id}.")
-
+#Method to display main menu and carry out operations
     def run(self):
+     print('WELCOME TO FITNESS CENTER')
+     print("*"*50)
      while True:
         print("What would you like to do?")
         print("1. Add member")
