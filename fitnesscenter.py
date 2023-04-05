@@ -159,10 +159,24 @@ class FitnessCenter:
                 break
             except ValueError:
                 print("Invalid member ID. Please enter a positive integer.")
+        # print('Which club are you trying to check into?')
+        # club_input = input('< ')
+        # print(member.name)
+        # if club_input != club.name:
+        #     print(f'I am sorry, {mem}')
+        # print(test_input_)
         for member in self.members:
             if member.member_id == member_id:
                 if isinstance(member, SingleClubMember):
-                    club = member.club
+                    print('What club are you trying to check into?')
+                    club_input = input('< ').lower()
+                    if club_input == member.club.name.lower():
+                        print(club_input)
+                        print(member.club.name)
+                        club = member.club
+                    else:
+                        print(f'Member {member_id} does not belong to {member.club.name}.')
+                        club = self.choose_club()
                 else:
                     club = self.choose_club()
                 if not member.check_in(club):
