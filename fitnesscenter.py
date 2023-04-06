@@ -23,7 +23,7 @@ class SingleClubMember(Member):
 #The check_in method alerts the user if it’s not their club and prompts them again for the correct club or to cancel the check in process
     def check_in(self, club):
         if club.name != self.club.name:
-            print(f"Alert! {self.name} is not a member of {self.club.name}.Please check in at your club{self.club.name}.")
+            print(f"Alert! {self.name} is not a member of {club.name}. Please check in here: {club.name}.")
             return False
         else:
             print(f"Welcome {self.name} to {club.name}!")
@@ -50,8 +50,8 @@ class Club():
 class FitnessCenter:
     def __init__(self):
         self.members = []
-        self.clubs = [Club("Club A", "Address A"), Club("Club B", "Address B"), Club("Club C", "Address C"),
-                      Club("Club D", "Address D")]
+        self.clubs = [Club("Basketball Club", "100 Park Way"), Club("Golf Club", "102 Park Way"), Club("Tennis Club", "104 Park Way"),
+                      Club("Tennis Club", "106 Park Way")]
         self.promotion_start_date = datetime.date(2023, 4, 1)
         self.promotion_end_date = datetime.date(2023, 4, 30)
 #Add members (both kinds),
