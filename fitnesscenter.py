@@ -23,10 +23,10 @@ class SingleClubMember(Member):
 #The check_in method alerts the user if it’s not their club and prompts them again for the correct club or to cancel the check in process
     def check_in(self, club):
         if club.name != self.club.name:
-            print(f"Alert! {self.name} is not a member of {club.name}. Please check in here: {club.name}.")
+            print(f"Alert! {self.name} is not a member of {club.name}. Please check in here: {self.club.name}.")
             return False
         else:
-            print(f"Welcome {self.name} to {club.name}!")
+            print(f"Welcome {self.name} to {self.club.name}!")
             return True
 
 
@@ -51,7 +51,7 @@ class FitnessCenter:
     def __init__(self):
         self.members = []
         self.clubs = [Club("Basketball Club", "100 Park Way"), Club("Golf Club", "102 Park Way"), Club("Tennis Club", "104 Park Way"),
-                      Club("Tennis Club", "106 Park Way")]
+                      Club("Swimming Club", "106 Park Way")]
         self.promotion_start_date = datetime.date(2023, 4, 1)
         self.promotion_end_date = datetime.date(2023, 4, 30)
 #Add members (both kinds),
@@ -230,14 +230,19 @@ class FitnessCenter:
         choice = input()
         if choice == "1":
             self.add_member()
+            print('\n\n')
         elif choice == "2":
             self.remove_member()
+            print('\n\n')
         elif choice == "3":
             self.display_member_info()
+            print('\n\n')
         elif choice == "4":
             self.check_in_member()
+            print('\n\n')
         elif choice == "5":
             self.generate_bill()
+            print('\n\n')
         elif choice == "6":
             print("Goodbye!")
             break
