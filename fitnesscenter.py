@@ -10,6 +10,7 @@ class Member:
         self.member_id = member_id
         self.name = name
 
+
     def check_in(self, Club ):
 
         return

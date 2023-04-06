@@ -48,6 +48,22 @@ class TestMember_Finteness(unittest.TestCase):
         self.assertEqual(club.name, "Chess Club")
         self.assertEqual(club.address, "123 Main St.")
 
+    def test_add_number(self):
+        self.assertEqual(self.fc.add_member(), None)  # true because returns no member instance,
+    def test_check_promotion_period(self):
+        self.assertEqual((self.fc.is_promotion_period()), False)  # supposed to be True becuase promotion is set to today.
+    def test_remove_member(self):
+        self.assertIsNone(self.fc.remove_member())
+    def test_display_member(self):
+        self.assertEqual(self.fc.display_member_info(), None) # True because of ro return value
+    def test_choose_club(self):
+        self.assertEqual(self.fc.choose_club(), object) # choose club is storing the memory.
+    def test_check_in(self):
+        self.assertEqual(self.fc.check_in_member(), None) # true becuase function returns no value
+    def test_generate_bill(self):
+        self.assertEqual(self.fc.generate_bill(), None)  # True because no member instanced.
+    def test_run(self):
+        self.assertEqual(self.fc.run(), None)  # no return value, so true.
 
 
     if __name__ == '__main__':
